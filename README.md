@@ -15,3 +15,7 @@
                 "host": "127.0.0.1",
                 "dialect": "mysql"
                 },
+    - Once you've added your db config file
+        - go to the src folder from your terminal 
+        - execute npx sequelize db:create and then execute
+            - npx sequelize db:migrate
