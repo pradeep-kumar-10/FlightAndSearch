@@ -19,3 +19,4 @@
         - go to the src folder from your terminal 
         - execute npx sequelize db:create and then execute
             - npx sequelize db:migrate
+        
