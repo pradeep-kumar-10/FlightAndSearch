@@ -1,6 +1,6 @@
-const CityService = require("../services/index");
+const { CityService}  = require("../services/index");
 
-const cityService = new CityService;
+const cityService = new CityService();
 
 const create = async (req, res) => {
     try{
@@ -17,14 +17,14 @@ const create = async (req, res) => {
             data: {},
             sucess: false,
             message: "Not able to create a city",
-            err: {}
+            err: error
         })
     }
 }
 
 const destroy = async (req, res) => {
     try{
-        const responce = await cityService.deleteCity(req,params.id);
+        const responce = await cityService.deleteCity(req.params.id);
         return res.status(200).json({
             data: responce,
             sucess: true,
@@ -37,7 +37,7 @@ const destroy = async (req, res) => {
             data: {},
             sucess: false,
             message: "Not able to delete a city",
-            err: {}
+            err: error
         })
     }
 }
@@ -45,7 +45,7 @@ const destroy = async (req, res) => {
 // GET-> /city/:id
 const get = async (req, res) => {
     try{
-        const responce = await cityService.geCity(req.params.id);
+        const responce = await cityService.getCity(req.params.id);
         return res.status(200).json({
             data: responce,
             sucess: true,
@@ -58,7 +58,7 @@ const get = async (req, res) => {
             data: {},
             sucess: false,
             message: "Not able to fetch a city",
-            err: {}
+            err: error
         })
     }
 }
@@ -68,9 +68,9 @@ const update = async (req, res) => {
     try{
         const response = await cityService.updateCity(req.params.id, req.body);
         return res.status(200).json({
-            data: city,
+            data: response,
             sucess: true,
-            message: "Sucessfully created a city",
+            message: "Sucessfully update a city",
             err: {}
         })
     } catch (error){
@@ -79,7 +79,14 @@ const update = async (req, res) => {
             data: {},
             sucess: false,
             message: "Not able to update a city",
-            err: {}
+            err: error
         })
     }
+}
+
+module.exports = {
+    create,
+    destroy,
+    get,
+    update
 }
