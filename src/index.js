@@ -17,10 +17,6 @@ const setupAndStartServer = async() => {
         console.log(`Server started at ${PORT}`);
     });
 
-    await Airplane.create({
-        modelNumber: 'Bombardier CRJ'
-    })
-
     // After every association we need to do
     if(process.env.SYNC_DB){
         db.sequelize.sync({alter: true});
