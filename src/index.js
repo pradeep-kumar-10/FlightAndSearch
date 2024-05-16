@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 const { PORT } = require("./config/serverConfig");
 const ApiRoutes = require("./routes/index");
 
-// const CityRepository = require("./repository/city-repository");
+const {Airport, City} = require('./models/index');
+const db = require('./models/index');
 
 const setupAndStartServer = async() => {
     const app = express();
@@ -16,8 +17,24 @@ const setupAndStartServer = async() => {
         console.log(`Server started at ${PORT}`);
     });
 
-    // const cityRepo = new CityRepository();
-    // cityRepo.deleteCity();
+    // const airports = await Airport.findAll();
+
+    // const airports = await Airport.findAll({ 
+    //     include: [{
+    //         model: City
+    //     }]
+    // });
+
+    // After every association we need to do
+    if(process.env.SYNC_DB){
+        db.sequelize.sync({alter: true});
+    }
+    
+    // const city = await City.findOne({
+    //     where: { id:10 }
+    // });
+    // const airports = await city.getAirports();
+    // console.log(city, airports);
 
 }
 

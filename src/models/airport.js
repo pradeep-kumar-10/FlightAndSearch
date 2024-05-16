@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       // Airport bolongTo City
       this.belongsTo(models.City,{
-        foreignKey: cityId,
+        foreignKey: 'cityId',
         onDelete: "CASCADE"
       })
     }
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     },
     address: DataTypes.STRING,
-    CityId: {
+    cityId: {
       type: DataTypes.INTEGER,
       allowNull:false
     }
